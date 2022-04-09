@@ -31,7 +31,7 @@ class ArticlesViewModel(private val fetchArticlesUseCase: FetchArticlesUseCase) 
 
     }
 
-    fun getArticles() {
+    private fun getArticles() {
         fetchAllArticlesJob = launchCoroutine {
             fetchArticlesUseCase(Unit).collect { receivedArticles ->
                 Timber.d("Received articles in viewModel -> ${receivedArticles.size}")

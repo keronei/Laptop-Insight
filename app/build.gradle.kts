@@ -44,13 +44,13 @@ android {
 
 dependencies {
 
-    //Data module
+    // Data module
     implementation(project(BuildModules.domainModule))
     implementation(project(BuildModules.localModule))
     implementation(project(BuildModules.remoteModule))
     implementation(project(BuildModules.repositoryModule))
 
-    //System dependencies
+    // System dependencies
     implementation(Libraries.ktxCore)
     implementation(Libraries.appCompat)
     implementation(Libraries.materialComponents)
@@ -60,17 +60,17 @@ dependencies {
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
 
-    //Android
+    // Android
     implementation(Libraries.liveDataKtx)
     implementation(Libraries.viewModelKtx)
 
-    //Koin
+    // Koin
     implementation(Libraries.koinCore)
     implementation(Libraries.koinAndroid)
     //implementation(Libraries.koinScope)
     //implementation(Libraries.koinViewModel)
 
-    //kTor
+    // kTor
     implementation(Libraries.ktorCoreClient)
     implementation(Libraries.ktorClientCIO)
     implementation(Libraries.ktorLoggingClient)
@@ -79,13 +79,20 @@ dependencies {
     //Timber
     implementation(Libraries.timber)
 
-    //Room
+    // Room
     implementation(Libraries.roomRuntime)
     implementation(Libraries.roomKtx)
     kapt(Libraries.roomKapt)
 
+    // Compose
+    implementation(Libraries.composeActivity)
+    implementation(Libraries.materialDesign)
+    implementation(Libraries.animations)
+    implementation(Libraries.toolingAndSupport)
+    implementation(Libraries.composeViewModels)
 
-    //Testing
+
+    // Testing
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.testExtjunit)
     androidTestImplementation(TestLibraries.espressoCore)

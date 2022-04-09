@@ -1,6 +1,7 @@
 package com.keronei.android.laptopReview
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setContent {}
 
         val navView: BottomNavigationView = binding.navView
 
