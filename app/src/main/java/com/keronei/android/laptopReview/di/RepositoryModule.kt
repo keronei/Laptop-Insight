@@ -13,7 +13,7 @@ val repositoryModule = module {
     }
 
     single<ArticlesRepository> {
-        ArticlesRepositoryImpl(articleDao = get(), remoteArticlesDataSource = get())
+        ArticlesRepositoryImpl(articleDao = get(), remoteArticlesDataSource = get(), parser = get())
     }
 
     single { RemoteArticlesDataSource(ktorClient = get()) }
