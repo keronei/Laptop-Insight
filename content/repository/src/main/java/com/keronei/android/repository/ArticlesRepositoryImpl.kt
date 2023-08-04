@@ -17,7 +17,7 @@ import timber.log.Timber
 class ArticlesRepositoryImpl(
     private val articleDao: ArticleDao,
     private val remoteArticlesDataSource: RemoteArticlesDataSource,
-    private val parser : XmlPullParser
+    private val parser: XmlPullParser
 ) : ArticlesRepository {
     override fun fetchArticles(): Flow<List<Article>> = flow {
         val articles = mutableListOf<Article>()
@@ -37,13 +37,13 @@ class ArticlesRepositoryImpl(
         //remove old articles
         articleDao.cleanUpArticles()
 
-        articleDao.getArticles().map { articlesInFlow ->
-            articlesInFlow.forEach { art ->
-                articles.add(art.toLocal())
+        val cachedArticles = articleDao.getArticles().map { articlesInFlow ->
+            articlesInFlow.map {
+                it.toLocal()
             }
         }
 
-        emit(articles)
+        emit(cachedArticles.first())
     }
 
 }

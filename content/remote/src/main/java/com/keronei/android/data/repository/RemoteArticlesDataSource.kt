@@ -1,14 +1,20 @@
 package com.keronei.android.data.repository
 
+import com.keronei.android.data.Constants.FEED_URL
 import com.keronei.android.data.xmlparser.ArticleXmlParser
 import com.keronei.android.domain.models.Article
 import io.ktor.client.*
+import io.ktor.client.call.receive
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.isSuccess
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.xmlpull.v1.XmlPullParser
 import java.nio.charset.Charset
 
-class RemoteArticlesDataSource(private val ktorClient: HttpClient) {
+class RemoteArticlesDataSource(private val ktorClient: HttpClient
+    ) {
 
     val news = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
             "<rss>" +
@@ -47,22 +53,22 @@ class RemoteArticlesDataSource(private val ktorClient: HttpClient) {
 
      fun fetchRemoteArticles(parser: XmlPullParser): Flow<List<Article>> = flow {
 
-         val articles = ArticleXmlParser(parser).parse(news.byteInputStream(Charset.defaultCharset()))
+         //val articles = ArticleXmlParser(parser).parse(news.byteInputStream(Charset.defaultCharset()))
 
-         emit(articles)
+        // emit(articles)
 
 
-//        ktorClient.use { client ->
-//            val response: HttpResponse = client.get(FEED_URL)
-//
-//            if (response.status.isSuccess()) {
-//                val contentAsString: String = response.receive()
-//                val stream = contentAsString.byteInputStream()
-//                val articles = ArticleXmlParser().parse(stream)
-//                emit(articles)
-//            } else {
-//                emit(emptyList<Article>())
-//            }
-//        }
+        ktorClient.use { client ->
+            val response: HttpResponse = client.get(FEED_URL)
+
+            if (response.status.isSuccess()) {
+                val contentAsString: String = response.receive()
+                val stream = contentAsString.byteInputStream()
+                val articles = ArticleXmlParser(parser).parse(stream)
+                emit(articles)
+            } else {
+                emit(emptyList<Article>())
+            }
+        }
     }
 }
