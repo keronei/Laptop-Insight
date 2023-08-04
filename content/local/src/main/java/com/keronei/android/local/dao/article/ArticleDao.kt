@@ -16,5 +16,5 @@ interface ArticleDao {
     fun getArticles(): Flow<List<ArticleEntity>>
 
     @Query("DELETE FROM articles WHERE articleId NOT IN (SELECT articleId FROM articles ORDER BY articleId LIMIT 30)")
-    suspend fun cleanUpArticles() //https://stackoverflow.com/questions/46193356/limit-the-number-of-rows-in-a-room-database
+    suspend fun cleanUpArticles(): Int //https://stackoverflow.com/questions/46193356/limit-the-number-of-rows-in-a-room-database
 }

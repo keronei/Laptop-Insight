@@ -53,9 +53,9 @@ class RemoteArticlesDataSource(private val ktorClient: HttpClient
 
      fun fetchRemoteArticles(parser: XmlPullParser): Flow<List<Article>> = flow {
 
-         //val articles = ArticleXmlParser(parser).parse(news.byteInputStream(Charset.defaultCharset()))
-
-        // emit(articles)
+//         val articles = ArticleXmlParser(parser).parse(news.byteInputStream(Charset.defaultCharset()))
+//
+//         emit(articles)
 
 
         ktorClient.use { client ->

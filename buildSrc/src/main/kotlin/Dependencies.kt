@@ -1,7 +1,7 @@
 object Versions {
     //Kotlin
-    const val kotlin = "1.5.31"
-    const val coreKtx = "1.6.0"
+    const val kotlin = "1.8.10"
+    const val coreKtx = "1.9.0"
 
     //Ui
     const val legacy = "1.0.0"
@@ -27,14 +27,19 @@ object Versions {
     const val firebaseBom = "28.4.0"
 
     //Room
-    const val room = "2.3.0"
+    const val room = "2.4.3"
 
     //Coil
-    const val coil = "1.3.2"
+    const val coil = "2.4.0"
 
     //Ktor
     const val ktorClient = "1.6.7"
     const val logBack = "1.2.10"
+
+    // Compose
+    const val kotlinComposeCompile = "1.4.4"
+    const val kotlinComposeBom = "2023.06.01"
+    const val composeViewModel = "2.6.1"
 
     //Testing
     const val junit = "4.5"
@@ -44,14 +49,14 @@ object Versions {
     const val robolectric = "4.6"
 }
 
-object Buildlugins {
-
+object BuildPlugins {
+    const val kotlinAndroid = "org.jetbrains.kotlin.android"
 }
 
 object AndroidSdk {
     const val minSdkVersion = 21
     const val buildToolsVersion = "30.0.3"
-    const val compileSdkVersion = 30
+    const val compileSdkVersion = 33
     const val targetSdkVersion = compileSdkVersion
     const val versionCode = 4
     const val versionName = "2.0"
@@ -122,6 +127,18 @@ object Libraries {
     const val ktorLoggingClient = "io.ktor:ktor-client-logging:${Versions.ktorClient}"
     const val ktorLogBack = "ch.qos.logback:logback-classic:${Versions.logBack}"
 
+    // Compose
+    const val composeBom = "androidx.compose:compose-bom:${Versions.kotlinComposeBom}"
+    const val composeMaterial3 = "androidx.compose.material3:material3"
+    const val composeFoundation = "androidx.compose.foundation:foundation"
+    const val composeUi = "androidx.compose.ui:ui"
+    const val toolingPreview = "androidx.compose.ui:ui-tooling-preview"
+    const val uiTooling = "androidx.compose.ui:ui-tooling"
+    const val materialExtendedIcons = "androidx.compose.material:material-icons-extended"
+    const val composeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
+
+    // Coil
+    const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 }
 
 object TestLibraries {

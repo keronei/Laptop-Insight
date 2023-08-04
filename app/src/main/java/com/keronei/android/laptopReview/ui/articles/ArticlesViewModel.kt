@@ -1,9 +1,8 @@
 package com.keronei.android.laptopReview.ui.articles
 
-import com.keronei.android.domain.models.Article
-import com.keronei.android.domain.usecases.FetchArticlesBaseUseCase
 import com.keronei.android.domain.usecases.FetchArticlesUseCase
 import com.keronei.android.laptopReview.base.BaseViewModel
+import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,9 +15,9 @@ class ArticlesViewModel(private val fetchArticlesUseCase: FetchArticlesUseCase) 
 
     private var fetchAllArticlesJob: Job? = null
 
-    private val articlesList = MutableStateFlow<List<Article>?>(null)
+    private val articlesList = MutableStateFlow<ArticlesState>(ArticlesState.Empty)
 
-    val availableArticles : StateFlow<List<Article>?> = articlesList
+    val availableArticles : StateFlow<ArticlesState> = articlesList
 
     override val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         // val result = exception.stackTrace
@@ -35,7 +34,7 @@ class ArticlesViewModel(private val fetchArticlesUseCase: FetchArticlesUseCase) 
         fetchAllArticlesJob = launchCoroutine {
             fetchArticlesUseCase(Unit).collect { receivedArticles ->
                 Timber.d("Received articles in viewModel -> ${receivedArticles.size}")
-                articlesList.emit(receivedArticles)
+                articlesList.emit(ArticlesState.Data(receivedArticles))
             }
         }
     }

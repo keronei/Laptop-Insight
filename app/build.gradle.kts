@@ -38,7 +38,12 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        compose = true
         viewBinding = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.kotlinComposeCompile
     }
 }
 
@@ -83,6 +88,24 @@ dependencies {
     implementation(Libraries.roomRuntime)
     implementation(Libraries.roomKtx)
     kapt(Libraries.roomKapt)
+
+    // Compose
+    val composeBom = platform(Libraries.composeBom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation(Libraries.composeMaterial3)
+    implementation(Libraries.composeUi)
+    debugImplementation(Libraries.uiTooling)
+    implementation(Libraries.composeFoundation)
+    implementation(Libraries.toolingPreview)
+
+    implementation(Libraries.composeViewModel)
+
+    implementation(Libraries.materialExtendedIcons)
+
+    // Coil
+    implementation(Libraries.coil)
 
 
     //Testing

@@ -4,21 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.keronei.android.laptopReview.databinding.FragmentHomeBinding
-import kotlinx.coroutines.flow.collect
+import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
+import com.keronei.android.laptopReview.ui.articles.widgets.ArticleView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel by viewModel<ArticlesViewModel>()
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,22 +26,36 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return ComposeView(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
 
-        val textView: TextView = binding.textHome
+            setContent {
+                val articles = homeViewModel.availableArticles.collectAsState()
 
-        lifecycleScope.launchWhenResumed {
-            homeViewModel.availableArticles.collect { articles ->
+                when (val list = articles.value) {
+                    is ArticlesState.Loading -> {
+                        // Show loading
+                    }
 
-                textView.text = articles?.size.toString()
+                    is ArticlesState.Data -> {
+                        val items = list.articles
+
+                        LazyColumn(content = {
+                            items(items = items) { item ->
+                                ArticleView(item = item)
+                            }
+                        }, modifier = Modifier.padding(bottom = 56.dp))
+                    }
+
+                    is ArticlesState.Empty -> {
+                        // Show error
+                    }
+                }
             }
-        }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        }
     }
 }
