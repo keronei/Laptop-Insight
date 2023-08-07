@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import com.keronei.android.laptopReview.extensions.navigate
 import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
 import com.keronei.android.laptopReview.ui.articles.widgets.ArticleView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,7 +48,15 @@ class HomeFragment : Fragment() {
 
                         LazyColumn(content = {
                             items(items = items) { item ->
-                                ArticleView(item = item)
+                                ArticleView(
+                                    item = item,
+                                    onSelected = {
+                                        homeViewModel.selectedArticle = item
+
+                                        navigate(HomeFragmentDirections
+                                            .actionNavigationHomeToArticleDetailFragment())
+                                    }
+                                )
                             }
                         }, modifier = Modifier.padding(bottom = 56.dp))
                     }

@@ -1,6 +1,7 @@
 package com.keronei.android.laptopReview.ui.articles.widgets
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -14,21 +15,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.keronei.android.domain.models.Article
-import java.time.Instant
+import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
 import java.util.Calendar
-import java.util.Date
 
 @Composable
-fun ArticleView(item: Article) {
+fun ArticleView(
+    item: Article,
+    onSelected: (article: Article) -> Unit) {
     Card(
         modifier = Modifier
-            .padding(4.dp),
+            .padding(4.dp).
+        clickable { onSelected(item) },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -36,13 +41,14 @@ fun ArticleView(item: Article) {
     ) {
         Box(
             modifier = Modifier
-                .height(200.dp)
+                .height(300.dp)
         ) {
             AsyncImage(
                 model = item.banner,
                 modifier = Modifier
-                    .height(200.dp),
-                contentDescription = item.description
+                    .height(300.dp),
+                contentDescription = item.description,
+                contentScale = ContentScale.Fit
             )
 
             Box(
@@ -54,7 +60,7 @@ fun ArticleView(item: Article) {
                                 Color.Transparent,
                                 Color.Black
                             ),
-                            startY = 300f
+                            startY = 100f
                         )
                     )
             )
@@ -88,5 +94,5 @@ fun ArticleViewPreview() {
         guid = "sds"
 
     )
-    ArticleView(item = item)
+    ArticleView(item = item, {})
 }
