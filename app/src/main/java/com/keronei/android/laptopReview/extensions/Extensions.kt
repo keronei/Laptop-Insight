@@ -1,12 +1,18 @@
 package com.keronei.android.laptopReview.extensions
 
-import android.content.Context
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.annotation.KoinInternalApi
-import org.koin.core.context.GlobalContext
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.DialogFragmentNavigator
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 
-class Extensions {
-    @KoinInternalApi
-    val globalContext : Context
-        get() = GlobalContext.get().scopeRegistry.rootScope.androidContext()
+fun Fragment.navigate(directions: NavDirections) {
+    val controller = findNavController()
+    val currentDestination = (
+            controller.currentDestination as? FragmentNavigator.Destination
+            )?.className
+        ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
+    if (currentDestination == this.javaClass.name) {
+        controller.navigate(directions)
+    }
 }
