@@ -11,11 +11,11 @@ object Versions {
     const val fragment = "1.3.1"
 
     //AndroidX
-    const val navigation = "2.3.5"
+    const val navigation = "2.5.3"
     const val lifecycle = "2.4.0-alpha03"
 
     //Coroutines
-    const val coroutines = "1.3.9"
+    const val coroutines = "1.7.3"
 
     // Current version
     const val koin_version = "3.1.5"
@@ -41,6 +41,9 @@ object Versions {
     const val kotlinComposeBom = "2023.06.01"
     const val composeViewModel = "2.6.1"
 
+    // Accompanist
+    const val accompanist = "0.31.6-rc"
+
     //Testing
     const val junit = "4.5"
     const val textExtJunit = "1.1.3"
@@ -51,12 +54,13 @@ object Versions {
 
 object BuildPlugins {
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
+    const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
 }
 
 object AndroidSdk {
     const val minSdkVersion = 21
     const val buildToolsVersion = "30.0.3"
-    const val compileSdkVersion = 33
+    const val compileSdkVersion = 34
     const val targetSdkVersion = compileSdkVersion
     const val versionCode = 4
     const val versionName = "2.0"
@@ -67,6 +71,8 @@ object BuildModules {
     const val localModule = ":content:local"
     const val remoteModule = ":content:remote"
     const val repositoryModule = ":content:repository"
+    const val safeArgs = "androidx.navigation.safeargs.kotlin"
+    const val parcelize = "kotlin-parcelize"
 
 }
 
@@ -139,6 +145,9 @@ object Libraries {
 
     // Coil
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
+
+    // Accompanist
+    const val webView = "com.google.accompanist:accompanist-webview:${Versions.accompanist}"
 }
 
 object TestLibraries {
