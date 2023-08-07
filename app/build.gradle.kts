@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
+    id(BuildModules.safeArgs)
 }
 
 android {
@@ -31,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -45,6 +46,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.kotlinComposeCompile
     }
+    namespace = "com.keronei.android.laptopReview"
 }
 
 dependencies {
@@ -64,6 +66,7 @@ dependencies {
     implementation(Libraries.viewModelKtx)
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
+    implementation(Libraries.fragment)
 
     //Android
     implementation(Libraries.liveDataKtx)
@@ -87,6 +90,9 @@ dependencies {
     //Room
     implementation(Libraries.roomRuntime)
     implementation(Libraries.roomKtx)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     kapt(Libraries.roomKapt)
 
     // Compose
@@ -107,6 +113,8 @@ dependencies {
     // Coil
     implementation(Libraries.coil)
 
+    // Accompanist
+    implementation(Libraries.webView)
 
     //Testing
     testImplementation(TestLibraries.jUnit)
