@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Laptop Insight</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_favourite">Favourite</string>
     <string name="title_notifications">Notifications</string>
     <string name="could_not_get_the_selected_article">Could not get the selected article</string>
     <string name="favourite">Favourite</string>

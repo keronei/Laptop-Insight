@@ -41,12 +41,12 @@ fun ArticleView(
     ) {
         Box(
             modifier = Modifier
-                .height(300.dp)
+                .height(200.dp)
         ) {
             AsyncImage(
                 model = item.banner,
                 modifier = Modifier
-                    .height(300.dp),
+                    .height(200.dp),
                 contentDescription = item.description,
                 contentScale = ContentScale.Fit
             )

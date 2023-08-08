@@ -16,16 +16,11 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.keronei.android.laptopReview.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_favourite"
+        android:name="com.keronei.android.laptopReview.ui.favourite.FavouriteFragment"
+        android:label="@string/title_favourite"
         tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.keronei.android.laptopReview.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.keronei.android.laptopReview.ui.articles.widgets.ArticleDetailFragment"
