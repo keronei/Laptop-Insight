@@ -44,6 +44,9 @@ object Versions {
     // Accompanist
     const val accompanist = "0.31.6-rc"
 
+    // BottomBar
+    const val bottomBarNav = "1.0.0"
+
     //Testing
     const val junit = "4.5"
     const val textExtJunit = "1.1.3"
@@ -58,7 +61,7 @@ object BuildPlugins {
 }
 
 object AndroidSdk {
-    const val minSdkVersion = 21
+    const val minSdkVersion = 24
     const val buildToolsVersion = "30.0.3"
     const val compileSdkVersion = 34
     const val targetSdkVersion = compileSdkVersion
@@ -142,12 +145,16 @@ object Libraries {
     const val uiTooling = "androidx.compose.ui:ui-tooling"
     const val materialExtendedIcons = "androidx.compose.material:material-icons-extended"
     const val composeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
+    const val composeActivity = "androidx.activity:activity-compose"
 
     // Coil
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 
     // Accompanist
     const val webView = "com.google.accompanist:accompanist-webview:${Versions.accompanist}"
+
+    // Bottom Bar Nav
+    const val bottomBarNav = "com.exyte:animated-navigation-bar:${Versions.bottomBarNav}"
 }
 
 object TestLibraries {

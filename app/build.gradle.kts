@@ -99,6 +99,7 @@ dependencies {
     val composeBom = platform(Libraries.composeBom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    implementation(Libraries.composeActivity)
 
     implementation(Libraries.composeMaterial3)
     implementation(Libraries.composeUi)
@@ -115,6 +116,9 @@ dependencies {
 
     // Accompanist
     implementation(Libraries.webView)
+
+    // Bottom Navigation
+    implementation(Libraries.bottomBarNav)
 
     //Testing
     testImplementation(TestLibraries.jUnit)
