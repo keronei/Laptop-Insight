@@ -155,6 +155,8 @@ object Libraries {
 
     // Bottom Bar Nav
     const val bottomBarNav = "com.exyte:animated-navigation-bar:${Versions.bottomBarNav}"
+
+    const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigation}"
 }
 
 object TestLibraries {

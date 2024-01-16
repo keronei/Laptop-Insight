@@ -120,6 +120,9 @@ dependencies {
     // Bottom Navigation
     implementation(Libraries.bottomBarNav)
 
+    // Navigation
+    implementation(Libraries.navigationCompose)
+
     //Testing
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.testExtjunit)
