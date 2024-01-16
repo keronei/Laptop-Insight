@@ -16,12 +16,14 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,74 +34,59 @@ import com.keronei.android.laptopReview.R
 import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ArticleDetailFragment : Fragment() {
-    private val homeViewModel by viewModel<ArticlesViewModel>()
+@Composable
+fun ArticleDetailFragment(articlesViewModel: ArticlesViewModel) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return ComposeView(requireContext()).apply {
+    val articleLink = articlesViewModel.selectedArticle?.link
 
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
+    val favourited = remember { mutableStateOf(false) }
 
-            setContent {
-                val articleLink = homeViewModel.selectedArticle?.link
-
-                val favourited = remember { mutableStateOf(false) }
-
-                Scaffold(floatingActionButton = {
-                    if (articleLink != null) {
-                        FloatingActionButton(
-                            onClick = {
-                                favourited.value = !favourited.value
-                            },
-                            modifier = Modifier
-                                .padding(bottom = 48.dp)
-                                .background(color = Color.Transparent)
-                        ) {
-                            Icon(
-                                if (favourited.value) {
-                                    Icons.Filled.FavoriteBorder
-                                } else {
-                                    Icons.Filled.Favorite
-                                },
-                                contentDescription = context.getString(R.string.favourite)
-                            )
-                        }
-                    }
-                }) { contentPadding ->
-
-                    if (articleLink != null) {
-
-                        Column(modifier = Modifier.padding(contentPadding)) {
-
-                            val state = rememberWebViewState(url = articleLink)
-                            WebView(state = state
-                            )
-                        }
-
+    Scaffold(floatingActionButton = {
+        if (articleLink != null) {
+            FloatingActionButton(
+                onClick = {
+                    favourited.value = !favourited.value
+                },
+                modifier = Modifier
+                    .padding(bottom = 48.dp)
+                    .background(color = Color.Transparent)
+            ) {
+                Icon(
+                    if (favourited.value) {
+                        Icons.Filled.FavoriteBorder
                     } else {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(16.dp)
-                        ) {
-                            Text(
-                                text = context.getString(R.string.could_not_get_the_selected_article),
-                                style = TextStyle(
-                                    fontSize = 18.sp
-                                )
-                            )
-                        }
-                    }
-                }
+                        Icons.Filled.Favorite
+                    },
+                    contentDescription = LocalContext.current.getString(R.string.favourite)
+                )
+            }
+        }
+    }) { contentPadding ->
+
+        if (articleLink != null) {
+
+            Column(modifier = Modifier.padding(contentPadding)) {
+
+                val state = rememberWebViewState(url = articleLink)
+                WebView(
+                    state = state
+                )
+            }
+
+        } else {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = LocalContext.current.getString(R.string.could_not_get_the_selected_article),
+                    style = TextStyle(
+                        fontSize = 18.sp
+                    )
+                )
             }
         }
     }

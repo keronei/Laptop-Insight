@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.exyte.animatednavbar.AnimatedNavigationBar
@@ -42,8 +41,6 @@ fun MainScreen(navController: NavController, articlesViewModel: ArticlesViewMode
         mutableStateOf<Screen>(Screen.Home)
     }
     var selectedIndex by remember { mutableIntStateOf(0) }
-    // val screenDensity = LocalDensity.current.density
-
 
     Scaffold(
         bottomBar = {
@@ -91,7 +88,11 @@ fun MainScreen(navController: NavController, articlesViewModel: ArticlesViewMode
     ) {
         when (currentScreen) {
             Screen.Home -> {
-                HomeFragment(articlesViewModel = articlesViewModel, modifier = Modifier.padding(it))
+                HomeFragment(
+                    articlesViewModel = articlesViewModel,
+                    navigationController = navController,
+                    modifier = Modifier.padding(it)
+                )
             }
 
             Screen.Favourite -> {

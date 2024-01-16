@@ -8,11 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
 import com.keronei.android.laptopReview.ui.articles.widgets.ArticleView
+import timber.log.Timber
 
 @Composable
-fun HomeFragment(articlesViewModel: ArticlesViewModel, modifier: Modifier = Modifier) {
+fun HomeFragment(
+    articlesViewModel: ArticlesViewModel,
+    navigationController: NavController,
+    modifier: Modifier = Modifier
+) {
     val articles = articlesViewModel.availableArticles.collectAsState()
 
     when (val list = articles.value) {
@@ -28,12 +34,9 @@ fun HomeFragment(articlesViewModel: ArticlesViewModel, modifier: Modifier = Modi
                     ArticleView(
                         item = item,
                         onSelected = {
+                            Timber.tag("Controller").d(navigationController.toString())
                             articlesViewModel.selectedArticle = item
-
-//                            navigate(
-//                                HomeFragmentDirections
-//                                    .actionNavigationHomeToArticleDetailFragment()
-//                            )
+                            navigationController.navigate("articleDetail")
                         }
                     )
                 }
