@@ -31,7 +31,7 @@ import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
 import com.exyte.animatednavbar.animation.indendshape.Height
 import com.exyte.animatednavbar.animation.indendshape.shapeCornerRadius
 import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
-import com.keronei.android.laptopReview.ui.articles.HomeFragment
+import com.keronei.android.laptopReview.ui.articles.HomeScreen
 import com.keronei.android.laptopReview.ui.favourite.FavouriteScreen
 
 @Composable
@@ -88,7 +88,7 @@ fun MainScreen(navController: NavController, articlesViewModel: ArticlesViewMode
     ) {
         when (currentScreen) {
             Screen.Home -> {
-                HomeFragment(
+                HomeScreen(
                     articlesViewModel = articlesViewModel,
                     navigationController = navController,
                     modifier = Modifier.padding(it)

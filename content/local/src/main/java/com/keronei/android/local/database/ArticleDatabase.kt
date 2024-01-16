@@ -12,6 +12,4 @@ abstract class ArticleDatabase : RoomDatabase() {
     abstract val articleDao: ArticleDao
 
     abstract val favouritesDao: FavouritesDao
-
-
 }
