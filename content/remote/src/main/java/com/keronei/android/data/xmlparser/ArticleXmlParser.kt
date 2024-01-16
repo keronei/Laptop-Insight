@@ -148,7 +148,7 @@ class ArticleXmlParser(var parser: XmlPullParser) {
             }
         }
 
-        parser.require(XmlPullParser.END_TAG, nameSpaces, "enclosure")
+        // parser.require(XmlPullParser.END_TAG, nameSpaces, "enclosure")
 
         return bannerUrl
 

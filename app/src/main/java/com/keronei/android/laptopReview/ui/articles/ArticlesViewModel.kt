@@ -42,7 +42,7 @@ class ArticlesViewModel(
 
     fun getArticles() {
         fetchAllArticlesJob = launchCoroutine {
-            fetchArticlesUseCase.invoke(Unit).collect { receivedArticles ->
+            fetchArticlesUseCase(Unit).collect { receivedArticles ->
                 articlesList.emit(ArticlesState.Data(receivedArticles))
             }
         }
