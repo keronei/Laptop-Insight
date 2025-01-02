@@ -33,12 +33,17 @@ import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 import com.keronei.android.laptopReview.R
 import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
+import com.keronei.android.laptopReview.ui.favourite.FavouriteViewModel
 import timber.log.Timber
 
 @Composable
-fun ArticleDetailScreen(articlesViewModel: ArticlesViewModel) {
+fun ArticleDetailScreen(
+    articlesViewModel: ArticlesViewModel,
+    favouriteViewModel: FavouriteViewModel
+) {
 
-    val articleLink = articlesViewModel.selectedArticle?.link
+    val article = articlesViewModel.selectedArticle
+    val articleLink = article?.link
 
     val favourite = remember { mutableStateOf(false) }
 
@@ -52,6 +57,7 @@ fun ArticleDetailScreen(articlesViewModel: ArticlesViewModel) {
                 FloatingActionButton(
                     onClick = {
                         favourite.value = !favourite.value
+                        favouriteViewModel.toggleFavourite(article)
                     },
                     modifier = Modifier
                         .padding(bottom = 48.dp)
@@ -70,6 +76,7 @@ fun ArticleDetailScreen(articlesViewModel: ArticlesViewModel) {
         },
         containerColor = MaterialTheme.colorScheme.surface
     ) { contentPadding ->
+        //TODO fav status on opening page
 
         if (articleLink != null) {
 
