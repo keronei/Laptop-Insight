@@ -1,6 +1,6 @@
 object Versions {
     //Kotlin
-    const val kotlin = "1.8.10"
+    const val kotlin = "1.9.24"
     const val coreKtx = "1.9.0"
 
     //Ui
@@ -27,7 +27,7 @@ object Versions {
     const val firebaseBom = "28.4.0"
 
     //Room
-    const val room = "2.4.3"
+    const val room = "2.6.1"
 
     //Coil
     const val coil = "2.4.0"
@@ -37,7 +37,7 @@ object Versions {
     const val logBack = "1.2.10"
 
     // Compose
-    const val kotlinComposeCompile = "1.4.4"
+    const val kotlinComposeCompile = "1.5.14"
     const val kotlinComposeBom = "2023.06.01"
     const val composeViewModel = "2.6.1"
 

@@ -11,16 +11,14 @@ import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
 import com.keronei.android.laptopReview.ui.articles.widgets.ArticleDetailScreen
 import com.keronei.android.laptopReview.ui.favourite.FavouriteViewModel
 import org.koin.androidx.viewmodel.ext.android.getStateViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
-    private lateinit var articleViewModel: ArticlesViewModel
-    private lateinit var favouriteViewModel: FavouriteViewModel
+    private  val articleViewModel: ArticlesViewModel by viewModel()
+    private  val favouriteViewModel: FavouriteViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        articleViewModel = getStateViewModel()
-        favouriteViewModel = getStateViewModel()
 
         setContent {
             val navController = rememberNavController()
