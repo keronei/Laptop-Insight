@@ -20,7 +20,6 @@ class ArticlesRepositoryImpl(
     private val parser: XmlPullParser
 ) : ArticlesRepository {
     override fun fetchArticles(): Flow<List<Article>> = flow {
-        val articles = mutableListOf<Article>()
 
         val receivedArticles = mutableListOf<ArticleEntity>()
 

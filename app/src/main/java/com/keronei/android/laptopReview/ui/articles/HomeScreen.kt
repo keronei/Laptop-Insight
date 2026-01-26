@@ -1,11 +1,20 @@
 package com.keronei.android.laptopReview.ui.articles
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
 import com.keronei.android.laptopReview.ui.articles.widgets.ArticleView
@@ -21,7 +30,15 @@ fun HomeScreen(
 
     when (val list = articles.value) {
         is ArticlesState.Loading -> {
-            Text(text = "Fetching data", modifier = modifier)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator()
+                Spacer(Modifier.height(12.dp))
+                Text(text = "Fetching data")
+            }
         }
 
         is ArticlesState.Data -> {
@@ -38,11 +55,19 @@ fun HomeScreen(
                         }
                     )
                 }
-            }, modifier = modifier)
+            }, modifier = modifier.padding(8.dp))
         }
 
         is ArticlesState.Empty -> {
-            Text(text = "Nothing to show", modifier = modifier)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator()
+                Spacer(Modifier.height(12.dp))
+                Text(text = "Nothing to show")
+            }
         }
     }
 }

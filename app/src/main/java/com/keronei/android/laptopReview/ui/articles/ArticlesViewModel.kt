@@ -6,6 +6,7 @@ import com.keronei.android.domain.usecases.FetchArticlesUseCase
 import com.keronei.android.laptopReview.base.BaseViewModel
 import com.keronei.android.laptopReview.ui.articles.state.ArticlesState
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -42,6 +43,7 @@ class ArticlesViewModel(
 
     fun getArticles() {
         fetchAllArticlesJob = launchCoroutine {
+            articlesList.emit(ArticlesState.Loading)
             fetchArticlesUseCase(Unit).collect { receivedArticles ->
                 articlesList.emit(ArticlesState.Data(receivedArticles))
             }

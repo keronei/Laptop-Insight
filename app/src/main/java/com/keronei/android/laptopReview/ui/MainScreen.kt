@@ -36,7 +36,11 @@ import com.keronei.android.laptopReview.ui.favourite.FavouriteScreen
 import com.keronei.android.laptopReview.ui.favourite.FavouriteViewModel
 
 @Composable
-fun MainScreen(navController: NavController, articlesViewModel: ArticlesViewModel, favouriteViewModel: FavouriteViewModel) {
+fun MainScreen(
+    navController: NavController,
+    articlesViewModel: ArticlesViewModel,
+    favouriteViewModel: FavouriteViewModel
+) {
     val navigationBarItems = remember { NavigationBarItems.values() }
     var currentScreen by remember {
         mutableStateOf<Screen>(Screen.Home)
@@ -97,7 +101,11 @@ fun MainScreen(navController: NavController, articlesViewModel: ArticlesViewMode
             }
 
             Screen.Favourite -> {
-                FavouriteScreen(modifier = Modifier.padding(it), favouriteViewModel = favouriteViewModel)
+                FavouriteScreen(
+                    modifier = Modifier.padding(it),
+                    navController = navController,
+                    favouriteViewModel = favouriteViewModel
+                )
             }
         }
     }

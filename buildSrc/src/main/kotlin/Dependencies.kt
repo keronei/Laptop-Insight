@@ -63,10 +63,10 @@ object BuildPlugins {
 object AndroidSdk {
     const val minSdkVersion = 24
     const val buildToolsVersion = "30.0.3"
-    const val compileSdkVersion = 34
+    const val compileSdkVersion = 35
     const val targetSdkVersion = compileSdkVersion
-    const val versionCode = 4
-    const val versionName = "2.0"
+    const val versionCode = 6
+    const val versionName = "3.0"
 }
 
 object BuildModules {

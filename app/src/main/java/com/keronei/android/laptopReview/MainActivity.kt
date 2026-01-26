@@ -9,8 +9,8 @@ import androidx.navigation.compose.rememberNavController
 import com.keronei.android.laptopReview.ui.MainScreen
 import com.keronei.android.laptopReview.ui.articles.ArticlesViewModel
 import com.keronei.android.laptopReview.ui.articles.widgets.ArticleDetailScreen
+import com.keronei.android.laptopReview.ui.favourite.FavoriteDetailScreen
 import com.keronei.android.laptopReview.ui.favourite.FavouriteViewModel
-import org.koin.androidx.viewmodel.ext.android.getStateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -30,6 +30,10 @@ class MainActivity : ComponentActivity() {
 
                 composable("articleDetail") {
                     ArticleDetailScreen(articlesViewModel = articleViewModel, favouriteViewModel)
+                }
+
+                composable("favDetail") {
+                    FavoriteDetailScreen(favouriteViewModel = favouriteViewModel)
                 }
             }
         }
